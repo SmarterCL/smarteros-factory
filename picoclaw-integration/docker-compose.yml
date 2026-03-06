@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # Mosquitto MQTT Broker
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: picoclaw-mosquitto
+    restart: always
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - mosquitto_config:/mosquitto/config
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+    networks:
+      - picoclaw-net
+    labels:
+      - dokploy.app.name=picoclaw-mosquitto
+
+  # Node-RED (Flujos de automatización)
+  node-red:
+    image: nodered/node-red:latest
+    container_name: picoclaw-node-red
+    restart: always
+    ports:
+      - "1880:1880"
+    volumes:
+      - node-red_data:/data
+    environment:
+      - TZ=America/Santiago
+    networks:
+      - picoclaw-net
+    depends_on:
+      - mosquitto
+    labels:
+      - dokploy.app.name=picoclaw-node-red
+
+  # CoPaw Bridge (Puente MQTT ↔ Telegram)
+  copaw-bridge:
+    build:
+      context: ./copaw-bridge
+      dockerfile: Dockerfile
+    container_name: picoclaw-copaw-bridge
+    restart: always
+    environment:
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+    volumes:
+      - copaw_data:/opt/copaw/data
+    networks:
+      - picoclaw-net
+      - smarteros-network
+    depends_on:
+      - mosquitto
+    labels:
+      - dokploy.app.name=picoclaw-copaw-bridge
+
+networks:
+  picoclaw-net:
+    name: picoclaw-network
+    driver: bridge
+  smarteros-network:
+    name: smarteros-network
+    external: true
+
+volumes:
+  mosquitto_config:
+  mosquitto_data:
+  mosquitto_log:
+  node-red_data:
+  copaw_data:

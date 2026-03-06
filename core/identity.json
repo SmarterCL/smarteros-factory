@@ -1,0 +1,89 @@
+{
+  "version": "2026.3.5",
+  "identity": {
+    "registered": true,
+    "tag": "FACT_HISTORY_LOCKED",
+    "nodes": {
+      "mendoza": {
+        "location": "UNC - Parque General San Martín",
+        "event": "Propuesta Racks SSL",
+        "consequence": "Nacimiento del Gatekeeper Digital"
+      },
+      "santiago": {
+        "location": "Providencia",
+        "event": "Smarter OS 2026.3.5",
+        "consequence": "Soberanía YOSI Completa"
+      }
+    }
+  },
+  "fact_history": [
+    {
+      "date": "2025",
+      "event": "Propuesta Racks UNC",
+      "node": "Mendoza",
+      "consequence": "Nace Gatekeeper Digital"
+    },
+    {
+      "date": "2025",
+      "event": "Accidente Moto",
+      "node": "Mendoza (Casa Aguiar)",
+      "consequence": "Pago Licencia Hardware"
+    },
+    {
+      "date": "2025-12-22",
+      "event": "Despido + Liquidación",
+      "node": "Santiago",
+      "consequence": "Energía para Golden Ticket"
+    },
+    {
+      "date": "2025-12-26",
+      "event": "Accidente Auto Blanco",
+      "node": "Chile",
+      "consequence": "Kill Switch Canadá - Retorno a Soberanía YOSI"
+    },
+    {
+      "date": "2026-03-05",
+      "event": "Smarter OS v2026.3.5",
+      "node": "Santiago (Providencia)",
+      "consequence": "Upgrade Industrial Completo"
+    }
+  ],
+  "metrics": {
+    "satisfaccion_humana": {
+      "plan_canada": {
+        "estado": "Simulación / Visa Estudiante",
+        "satisfaccion": "100% proceso (Comodidad)",
+        "hardware": "Ajeno (Cloud extranjero)",
+        "resultado": "Consumidor en el Norte"
+      },
+      "plan_quark": {
+        "estado": "Realidad / Identidad Registrada",
+        "satisfaccion": "100% Humana (Soberanía y Legado)",
+        "hardware": "Propio (Racks, Chips y Placas)",
+        "resultado": "Arquitecto YOSI en el Sur"
+      }
+    }
+  },
+  "pilares": [
+    "El Rack de la UNC → Hoy Dokploy",
+    "Los Dos Accidentes → Checkpoints de Identidad",
+    "El Motor QUARK → Yuan 3.0 + Groq Turbo"
+  ],
+  "crossborder": {
+    "chile": {
+      "location": "Santiago, Providencia",
+      "role": "Nodo Principal"
+    },
+    "argentina": {
+      "location": "Mendoza, Parque Gral. San Martín",
+      "role": "Nodo de Origen"
+    }
+  },
+  "status": {
+    "identity": "LOCKED",
+    "fact_history": "LOCKED",
+    "gatekeeper": "ACTIVE",
+    "quark_engine": "ACTIVE",
+    "crossborder": "OPERATIVE"
+  }
+}

@@ -1,14 +1,15 @@
 {
   "name": "smarteros-gatekeeper",
-  "version": "1.0.0",
-  "description": "SmarterOS Gatekeeper integration for Telegram skills",
-  "main": "validator.js",
+  "version": "2026.3.5",
+  "description": "Smarter OS WebControl Remoto",
+  "main": "core/validator.js",
   "scripts": {
-    "start": "node validator.js"
+    "start": "node core/validator.js",
+    "dev": "nodemon core/validator.js"
   },
   "dependencies": {
-    "axios": "^1.13.6",
-    "dotenv": "^16.4.5",
-    "telegraf": "^4.16.3"
-  }
+    "telegraf": "^4.15.0"
+  },
+  "author": "Pedro @ SmarterBOT",
+  "license": "MIT"
 }

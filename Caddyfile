@@ -1,0 +1,13 @@
+# Redirección total a Telegram
+app.smarterbot.cl {
+    redir https://t.me/smarteros_gatekeeper_bot
+}
+
+smarterbot.cl {
+    redir https://t.me/smarteros_gatekeeper_bot
+}
+
+# Dokploy (si está en este servidor)
+dokploy.smarterbot.cl {
+    reverse_proxy localhost:3000
+}
