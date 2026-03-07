@@ -11,6 +11,31 @@ services:
       - /opt/smarteros/docs:/opt/smarteros/docs
     networks:
       - dokploy-network
+    depends_on:
+      - mercadopago-mcp
+
+  mercadopago-mcp:
+    image: node:20-alpine
+    working_dir: /app
+    command: node core/mercadopago-mcp.js
+    env_file: .env
+    restart: always
+    container_name: mercadopago-mcp
+    volumes:
+      - ./core:/app/core
+      - ./scripts:/app/scripts
+    environment:
+      - MP_ACCESS_TOKEN=${MP_ACCESS_TOKEN}
+      - MP_BASE_URL=${MP_BASE_URL:-https://api.mercadopago.com}
+      - MP_NOTIFICATION_URL=${MP_NOTIFICATION_URL:-https://smarterbot.cl/webhook/mercadopago}
+    networks:
+      - dokploy-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3052/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 
 networks:
   dokploy-network:

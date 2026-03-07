@@ -1,9 +1,22 @@
 #!/usr/bin/env node
 
+import { MercadoPagoAPI } from './mercadopago-api-wrapper.js';
+
 const botToken = process.env.BOT_TOKEN_MAIN || '7631713367:AAGSmMVnDim6ESlLIh1aBdP1JIQSRcfkOkQ';
 const skillfish = process.env.SKILLFISH_PATH || `${process.env.HOME}/.skillfish`;
 const mcpEndpoint = process.env.MCP_ENDPOINT || 'http://localhost:3051';
 const status = process.env.BOT_STATUS || 'AWAITING_ACTIVE_TOKEN';
+const mpAccessToken = process.env.MP_ACCESS_TOKEN;
+
+let mpClient = null;
+if (mpAccessToken) {
+  try {
+    mpClient = new MercadoPagoAPI(mpAccessToken);
+    console.log('✅ Mercado Pago API inicializada');
+  } catch (e) {
+    console.log('⚠️ Mercado Pago no configurado:', e.message);
+  }
+}
 
 console.log('');
 console.log('╔════════════════════════════════════════════════════════╗');
@@ -14,6 +27,7 @@ console.log(`Bot Token:          ${botToken.substring(0,15)}...`);
 console.log(`Skillfish Path:     ${skillfish}`);
 console.log(`MCP Endpoint:       ${mcpEndpoint}`);
 console.log(`Status:             ${status}`);
+console.log(`Mercado Pago:       ${mpClient ? '✅ Configurado' : '⏳ No configurado'}`);
 console.log('');
 
 // Test token

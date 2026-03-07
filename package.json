@@ -1,14 +1,20 @@
 {
   "name": "smarteros-gatekeeper",
-  "version": "2026.3.5",
-  "description": "Smarter OS WebControl Remoto",
+  "version": "2026.3.7",
+  "description": "Smarter OS WebControl + Mercado Pago MCP",
   "main": "core/validator.js",
+  "type": "module",
   "scripts": {
     "start": "node core/validator.js",
-    "dev": "nodemon core/validator.js"
+    "dev": "nodemon core/validator.js",
+    "mcp:mp": "node core/mercadopago-mcp.js",
+    "api:mp": "node core/mercadopago-api-wrapper.js",
+    "test:mp": "bash scripts/test-mercadopago-mcp.sh",
+    "test:mp:docker": "docker exec smarteros-factory bash scripts/test-mercadopago-mcp.sh"
   },
   "dependencies": {
-    "telegraf": "^4.15.0"
+    "telegraf": "^4.15.0",
+    "@modelcontextprotocol/sdk": "^1.0.0"
   },
   "author": "Pedro @ SmarterBOT",
   "license": "MIT"
